@@ -383,7 +383,10 @@ class FormatStringFunctionFinder(FinderBase):
 
                 register_used = instruction.getOpObjects(
                     reference.getOperandIndex())
-                register_index = registers.index(register_used[0].toString())
+                try:
+                    register_index = registers.index(register_used[0].toString())
+                except ValueError:
+                    print("List does not contain value")
 
                 self.format_functions.append(FormatFunction(function,
                                                             register_index))
